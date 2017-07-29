@@ -1,5 +1,6 @@
-﻿package tmnt.example.androidutils;
+package tmnt.example.androidutils;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -62,9 +63,9 @@ public class AppUtils
 	*获取当前运行的Activity
 	*
 	*/
-	public static void getRunningTask(){
-	  ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-      RunningTaskInfo info = manager.getRunningTasks(1).get(0);
+	public static void getRunningTask(Context context){
+	  ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+      ActivityManager.RunningTaskInfo info = manager.getRunningTasks(1).get(0);
       String shortClassName = info.topActivity.getShortClassName();    //类名
       String className = info.topActivity.getClassName();              //完整类名
       String packageName = info.topActivity.getPackageName();  

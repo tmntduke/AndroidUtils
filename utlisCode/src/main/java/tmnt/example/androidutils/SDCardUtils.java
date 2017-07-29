@@ -1,4 +1,4 @@
-﻿package tmnt.example.androidutils;
+package tmnt.example.androidutils;
 
 import java.io.File;
 

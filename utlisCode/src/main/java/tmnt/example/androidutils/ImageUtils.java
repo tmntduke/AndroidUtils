@@ -90,11 +90,11 @@ public class ImageUtils {
      *  获取要使用的缩放参数
      *
 	 */
-	public static int getBitmapSampleSize(Context context, BitmapFactory.Options opt，
+	public static int getBitmapSampleSize(Context context, BitmapFactory.Options opt,
 		int resId, int needWidth, int needHeight){
 	  
-	    opt.inJustDecodeeBound = true;
-		BitmapFactory.decodeResource(context.getResource(),resId);
+	    opt.inJustDecodeBounds = true;
+		BitmapFactory.decodeResource(context.getResources(),resId);
 		int imageWidth = opt.outWidth;
 		int imageHeight = opt.outHeight;
 
@@ -105,9 +105,9 @@ public class ImageUtils {
 			final int halfWidth= imageWidth/2;
 			final int halfHeight = imageHeight/2;
 
-			while((halfHeght / inSampleSize )> needHeight 
+			while((halfHeight / inSampleSize )> needHeight
 			   && (halfWidth/inSampleSize) > needWidth ){
-			   inSampleSize *= 2；
+			   inSampleSize *= 2;
 			
 			}
 
@@ -122,7 +122,7 @@ public class ImageUtils {
 	  *
 	  *裁剪图片 并返回
 	  */
-	  public static void startPhotoZoom(Activity activity, Uri uri) {
+	  public static void startPhotoZoom(Activity activity, Uri uri,int result_request_code) {
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
         intent.putExtra("crop", "true");
@@ -136,6 +136,6 @@ public class ImageUtils {
         intent.putExtra("outputFormat", "JPEG");
         intent.putExtra("noFaceDetection", true);// 取消人脸识别
         intent.putExtra("return-data", true);// true:不返回uri，false：返回uri
-        activity.startActivityForResult(intent, RESULT_REQUEST_CODE);
+        activity.startActivityForResult(intent, result_request_code);
     }
 }
